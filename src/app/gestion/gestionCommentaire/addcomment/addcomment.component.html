@@ -1,0 +1,25 @@
+<form #f="ngForm">
+    <div class="d-flex flex-start w-100">
+        <img class="rounded-circle shadow-1-strong me-3"
+            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" style="width: 20%; height: 50px;" alt="avatar" />
+
+        <div class="form-outline w-100">
+            <textarea class="form-control" id="textAreaExample" rows="4" placeholder="Ajouter un commentaire..." data-bs-toggle="collapse"
+                href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                style="background: #fff;" type="text" name="comment" [(ngModel)]="comment.contenu" #c="ngModel" required minlength="3" maxlength="100"></textarea>
+        </div>
+         
+    </div>
+    <div style="text-align: left; margin-left: 100px;" >
+        <span class="text-danger"  *ngIf="c.invalid && c.touched && c.errors?.['required']">
+            <i class="bi bi-exclamation-octagon-fill"></i> commentaire is a required field</span>
+            <span class="text-danger" *ngIf="c.errors?.['minlength']"><i class="bi bi-exclamation-octagon-fill"></i> commentaire minlength is equal to 3</span>
+            <span class="text-danger" *ngIf="c.errors?.['maxlength']"> <i class="bi bi-exclamation-octagon-fill"></i>commentaire maxlength is equal to 100</span>
+           
+        </div>
+    <br>
+    <div class="float-end pt-1" style="margin-left: 15em;" class="collapse" id="collapseExample">
+        <button type="button" class="btn btn-primary btn-rounded" [disabled]="f.invalid" (click)="save()">Post comment</button>
+        <button type="reset" class="btn">Cancel</button>
+    </div>
+</form>
